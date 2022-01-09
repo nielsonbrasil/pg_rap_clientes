@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="UTF-8">	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+ 
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+  hash[1] = unescape(hash[1]);
+  vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+ 
+    return vars;
+}
+//&lt;p&gt;Olá&lt;/p&gt; &quot; &apos;
+
+
+
+
+
+</script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=email], select {
+  width: 100%;
+  font-size:20px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  //background-color: #4CAF50;
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 20%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+
+</head>
+<body>
+
+
+<br>
+
+<form id="form" target="_self" onsubmit="return postToGoogle();" action="" autocomplete="off"> 
+
+CADASTRE-SE AGORA MESMO<br><br>
+Insira seus dados: <bR>
+Nome Completo:<input id="nome" name="entry.16333332" type="text" required><br>
+CPF/CNPJ:<input id="cpf_cnpj" name="entry.1422566753" type="text" required><br>
+E-mail:<input id="email" name="entry.521095001" type="text" required><br>
+Whatsapp:<input id="whatsapp" name="entry.1750313794" type="text" required><br>
+
+
+<button id="send" type="submit" class="common_btn">Enviar</button>
+
+</form>
+<div align='center'><a href='test_entities_2.html' id="voltar" style="text-align: center !important; margin-top:190px !important; display:none; color:black;">Voltar</a>
+<h3 id="success-msg" style="text-align: center !important; margin-top:190px !important; display:none; color:black;"> Cadastro realizado com sucesso!</h3></div>
+
+
+
+<script>
+
+
+var n = getUrlVars();
+var nome = n['nome'];
+
+var c = getUrlVars();
+var cpfcnpj = c['cpfcnpj'];
+
+var ec = getUrlVars();
+var emailcomercial = ec['email'];
+
+var w = getUrlVars();
+var whatsapp = w['whatsapp'];
+
+
+
+
+
+</script>
+
+
+
+<script>
+function postToGoogle() {
+                
+				
+                
+				var field1 = $("#nome").val();
+				var field2 = $("#cpf_cnpj").val();
+                var field3 = $("#email").val();
+                var field4 = $("#whatsapp").val();
+				
+				var genid = field2;
+                var gendid = btoa(genid);
+
+
+				var field5 = gendid;
+               
+                
+             
+				
+	
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLScfPZANqfJ_ueZhn0G49BTQ3tXrGJELiUIriBvkkLQKGsEUlg/formResponse?",
+					data: {"entry.16333332":field1,"entry.1422566753":field2,"entry.521095001":field3,"entry.1750313794":field4,"entry.507168695":field5},
+                    type: "POST",
+                    dataType: "xml",
+                    success: function(d)
+					{
+					
+					},
+					error: function(x, y, z)
+						{
+
+							$('#success-msg').show();
+                                                        $('#voltar').show();
+					        //location.href = 'action_dados.html?cadastro_nome='+field1+'&cadastro_email='+field2;
+							$('#form').hide();
+                                         document.getElementById('voltar').href = "form_seo.html?id=" + id;
+							
+						}
+                });
+				return false;
+            }
+</script>
+</body>
+</html>
