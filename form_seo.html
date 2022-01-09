@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="UTF-8">	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+ 
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+  hash[1] = unescape(hash[1]);
+  vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+ 
+    return vars;
+}
+//&lt;p&gt;Olá&lt;/p&gt; &quot; &apos;
+
+
+
+
+
+</script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=email], select {
+  width: 100%;
+  font-size:20px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  //background-color: #4CAF50;
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 20%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+
+</head>
+<body>
+
+
+<br>
+
+<form id="form" target="_self" onsubmit="return postToGoogle();" action="" autocomplete="off"> 
+
+ANÁLISE SEO<br><br>
+Dados necessários a análise do Site <bR>
+<!--Id do promotor--><input id="id" name="entry.1890946786" type="hidden" required><br>
+URL do site para análise SEO:<input id="url" name="entry.1132709333" type="text" required><br>
+Nome do dono/responsável pelo site:<input id="nome" name="entry.1619197847" type="text" required><br>
+CPF/CNPJ:<input id="cpf_cnpj" name="entry.62917947" type="text" required><br>
+E-mail Comercial:<input id="emailcomercial" name="entry.1198348184" type="text" required><br>
+Whatsapp:<input id="whatsapp" name="entry.1636552458" type="text" required><br>
+
+
+<button id="send" type="submit" class="common_btn">Enviar</button>
+
+</form>
+<div align='center'><a href='test_entities_2.html' id="voltar" style="text-align: center !important; margin-top:190px !important; display:none; color:black;">Voltar</a>
+<h3 id="success-msg" style="text-align: center !important; margin-top:190px !important; display:none; color:black;"> Dados cadastrados com sucesso!</h3></div>
+
+
+
+<script>
+var i = getUrlVars();
+var id = i['id'];
+
+var u = getUrlVars();
+var razaosocial = u['url'];
+
+var n = getUrlVars();
+var nome = n['nome'];
+
+var c = getUrlVars();
+var cpfcnpj = c['cpfcnpj'];
+
+var ec = getUrlVars();
+var emailcomercial = ec['emailcomercial'];
+
+var w = getUrlVars();
+var whatsapp = w['whatsapp'];
+
+
+
+
+if(id == " " || id == null){
+document.getElementById('id').value = "1";
+id = "1";
+}else{
+document.getElementById('id').value = id;
+}
+
+
+
+</script>
+
+
+
+<script>
+function postToGoogle() {
+                var field1 = $("#id").val();
+                var field2 = $("#url").val();
+				var field3 = $("#nome").val();
+				var field4 = $("#cpf_cnpj").val();
+                var field5 = $("#emailcomercial").val();
+                var field6 = $("#whatsapp").val();
+               
+                
+             
+				
+	
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/e/1FAIpQLScnPshye-BIv1Fg0IyRmNCIta0krz2G7AeeclXn38LpkRK2dg/formResponse?",
+					data: {"entry.1890946786":field1,"entry.1132709333":field2,"entry.1619197847":field3,"entry.62917947":field4,"entry.1198348184":field5,"entry.1636552458":field6},
+                    type: "POST",
+                    dataType: "xml",
+                    success: function(d)
+					{
+					
+					},
+					error: function(x, y, z)
+						{
+
+							$('#success-msg').show();
+                                                        $('#voltar').show();
+					        //location.href = 'action_dados.html?cadastro_nome='+field1+'&cadastro_email='+field2;
+							$('#form').hide();
+                                         document.getElementById('voltar').href = "form_seo.html?id=" + id;
+							
+						}
+                });
+				return false;
+            }
+</script>
+</body>
+</html>
